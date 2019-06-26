@@ -1,6 +1,5 @@
-# Fantasychess
-
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.
+# Adventure Hunter
+This is an angular app made for the amazon app store for Kindle Fire. Link : https://www.amazon.com/Khelvaly-Studio-Adventure-Hunter/dp/B07GV7W75M
 
 ## Development server
 
