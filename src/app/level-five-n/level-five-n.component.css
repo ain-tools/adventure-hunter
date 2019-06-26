@@ -1,0 +1,36 @@
+td {
+    border: solid;
+    border-color:gray;
+    border-width: 0.5px;
+}
+img{
+    height: 100%;
+}
+.img{
+    height: 60%;
+    width: 80%;
+}
+.inline{
+    display: inline-block;
+    margin-right: 10px;
+}
+.icon{
+    width: 20%;
+    height: 40%;
+}
+.btnCast{
+    width: 40%;
+    height: 100px;
+}
+.imgMoveRight{
+    margin-left: 520px !important;
+    margin-top: -265px;
+    border: solid;
+    border-color: transparent;
+    border-radius: 30px;
+}
+
+.frameone{
+    overflow: scroll;
+    height: 1070px !important;
+}

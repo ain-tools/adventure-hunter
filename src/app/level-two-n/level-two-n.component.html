@@ -1,0 +1,138 @@
+<div class="showLevelOneF">
+  <div style="width:150px;height:20px;position: absolute;margin-top:70px;margin-left: 200px;" *ngIf="dialogText" class="dialogue-box">
+    <div class="tdialogue-box-text">
+    Do not underestimate the ennemy.
+    </div>
+    <div class="triangle-with-shadow"></div>
+  </div>
+  <table style="background-image: url(./assets/map3LevelTwo.png);height:850px;" class="levelOneF">
+    <tr>
+      <td height="90" width="14.29%"></td>
+      <td height="90" width="14.29%"></td>
+      <td height="90" width="14.29%"></td>
+      <td height="90" width="14.29%"></td>
+      <td height="90" width="14.29%"></td>
+      <td height="90" width="14.29%"></td>
+      <td height="90" width="14.29%"></td>
+      </tr>
+      <tr>
+          <td height="90" width="14.29%"></td>
+          <td height="90" width="14.29%"></td>
+          <td class="3_2" height="90" width="14.29%"></td>
+          <td class="4_2" height="90" width="14.29%"><img #monster1 (click)="resetMovement('ignore'); resetTiles(); openOptions('monster1');" src="./assets/monster24.png" class="monster1 monster"><div class="monster1HPBar" style="width:100px;height:4px;background-color:red;">
+            <div style="height:4px;background-color:green;"></div></div></td>
+          <td class="5_2" height="90" width="14.29%"></td>
+          <td class="6_2" height="90" width="14.29%"></td>
+          <td height="90" width="14.29%"></td>
+        </tr>
+      <tr>
+          <td height="90" width="14.29%"></td>
+          <td height="90" width="14.29%"></td>
+          <td class="3_3" height="90" width="14.29%"><img #monster2 (click)="resetMovement('ignore'); resetTiles(); openOptions('monster2');" src="./assets/monster24.png" class="monster2 monster"><div class="monster2HPBar" style="width:100px;height:4px;background-color:red;">
+            <div style="height:4px;background-color:green;"></div></div></td>
+          <td class="4_3" height="90" width="14.29%"></td>
+          <td class="5_3" height="90" width="14.29%"></td>
+          <td class="6_3" height="90" width="14.29%"><img #monster3 (click)="resetMovement('ignore'); resetTiles(); openOptions('monster3');" src="./assets/monster24.png" class="monster3 monster"><div class="monster3HPBar" style="width:100px;height:4px;background-color:red;">
+            <div style="height:4px;background-color:green;"></div></div></td>
+          <td height="90" width="14.29%"></td>
+        </tr>
+        <tr>
+            <td height="90" width="14.29%"></td>
+            <td height="90" width="14.29%"></td>
+            <td class="3_4" height="90" width="14.29%"></td>
+            <td class="4_4" height="90" width="14.29%"></td>
+            <td class="5_4" height="90" width="14.29%"></td>
+            <td class="6_4" height="90" width="14.29%"></td>
+            <td height="90" width="14.29%"></td>
+          </tr>
+          <tr>
+              <td height="90" width="14.29%"></td>
+              <td height="90" width="14.29%"></td>
+              <td class="3_5" height="90" width="14.29%"></td>
+              <td class="4_5" height="90" width="14.29%"></td>
+              <td class="5_5" height="90" width="14.29%"></td>
+              <td class="6_5" height="90" width="14.29%"></td>
+              <td height="90" width="14.29%"></td>
+            </tr>
+            <tr>
+                <td height="90" width="14.29%"></td>
+                <td height="90" width="14.29%"></td>
+                <td class="3_6" height="90" width="14.29%"></td>
+                <td class="4_6" height="90" width="14.29%"></td>
+                <td class="5_6" height="90" width="14.29%"></td>
+                <td class="6_6" height="90" width="14.29%"></td>
+                <td height="90" width="14.29%"></td>
+              </tr>
+              <tr>
+                <td height="90" width="14.29%"></td>
+                <td height="90" width="14.29%"></td>
+                <td class="3_7" height="90" width="14.29%"><img style="height: 80%;width: 80%" #positionP (click)="resetMovement(positionP); resetTiles(); openOptions('peasant')" src="./assets/peasant.png" class="peasant     target img"><div class="peasantHPBar" style="width:100px;height:4px;background-color:red;">
+                  <div style="height:4px;background-color:green;"></div></div></td>
+                <td class="4_7" height="90" width="14.29%"><img style="height: 100%;width: 100%" width="100%" #positionW (click)="resetMovement(positionW); resetTiles(); openOptions('warrior')" src="./assets/warrior.png" id="target" class="warrior     target img"><div class="warHPBar" style="width:100px;height:4px;background-color:red;">
+                  <div style="height:4px;background-color:green;"></div></div></td>
+                <td class="5_7" height="90" width="14.29%"><img style="height: 80%;width: 80%" width="100%" #positionD (click)="resetMovement(positionD); resetTiles(); openOptions('druid');" src="./assets/druid.png" class="druid       target img"><div class="druidHPBar" style="width:100px;height:4px;background-color:red;">
+                  <div style="height:4px;background-color:green;"></div></div></td>
+                <td class="6_7" height="90" width="14.29%"></td>
+                <td height="90" width="14.29%"></td>
+                </tr>
+  </table>
+  <div class="inline"><div class="energyBar" style="width:400px;height:24px;background-color:gray;">
+    <div style="height:24px;background-color:rgb(102, 157, 244);">{{energy}}/{{incrementCounter}}</div>
+  </div></div>
+
+  <button style="font-size:20px; margin-top: 5px;padding:10px;" class="inline" (click)="getMonstersAtStartOfGame(); getClassesAtStartOfGame();selectTarget(monster1,monster2,monster3); endTurn(); resetMovement('ignore'); resetTiles();addHP();" > End Turn </button>
+  
+  <!-- Quick Tutorial -->
+  <div *ngIf="!druid && !warrior && !peasant && !monster">
+      <h2 style="font-family: fantasy;font-size: 30px;">Quick Tutorial:</h2>
+      <ul style="font-size: 17.5px;">
+        <li>To open character skills sheet : Click on one of your allies in the board.</li>
+        <li>To move : Open your character skills sheet, click on Move and select your location on one of the highlighted boxes on the board.</li>
+        <li>To cast spells : Open your character skills sheet, click on Cast Spell and select your target. Energy is used.</li>
+        <li>To win : SLAUGHTER THEM ALL!!</li>
+        <li>End turn : Don't forget to end your turn after you're done!</li>
+        <li>Energy System : Used to cast spells. You start with 10,each turn regenerates your energy + 2.5 energy. Energy is capped off to 25. </li>
+      </ul>
+  </div>
+  
+  <!-- ENEMY DETAILS SCREEN -->
+      <div *ngIf="monster">
+        <b class="enemyName"></b>
+        <img width="200" class="enemyPortrait">
+        <div class="enemyDescription"></div>
+      </div>
+  
+      <!-- CHARACTER SPELL AND MOVE SCREEN -->
+  
+      <div *ngIf="druid">
+          <br>
+          <br>
+        <button style="font-size: 17.5px;" class="btnCast" (click)="resetTiles(); move('druid',positionD)" ><img style="width: 15%" class="icon" src="./assets/Runningicon.png" > Move Druid<br> <b><small>Only once per turn.</small></b></button>
+        <br>
+        <button style="font-size: 17.5px;" class="btnCast" (click)="castHeal(positionD)" ><img style="width: 15%" class="icon" src="./assets/Healicon.png" > Cast Heal<br> <b><small>Requires 10 Energy.</small></b></button>
+        <b style="margin-left:30px;margin-top:-32.5px;font-size: 50px; position:absolute;font-family: fantasy">Druid</b>
+        <img class="imgMoveRight" width="210" src="./assets/druidportrait.jpg">
+        <button style="position: absolute;margin-left: -736px;" (click)="castHeal(positionD);resetMovement(); resetTiles()"> Cancel attack or movement.</button>
+      </div>
+      
+      <div *ngIf="peasant">
+          <br>
+          <br>
+          <button style="font-size: 17.5px;" class="btnCast" (click)="resetTiles(); move('peasant',positionP)"><img style="width: 15%" class="icon" src="./assets/Runningicon.png" > Move Peasant<br> <b><small>Only once per turn.</small></b></button>
+          <br>
+          <button style="font-size: 17.5px;" class="btnCast" (click)="castThrowRock(positionP)" ><img style="width: 15%" class="icon" src="./assets/Rockicon.png" > Cast Throw Rock<br> <b><small>Requires 5 Energy.</small></b></button>
+          <b style="margin-left:30px;margin-top:-32.5px;font-size: 50px; position:absolute;font-family: fantasy">Peasant</b>
+          <img class="imgMoveRight" width="210" src="./assets/peasantportrait.jpg">
+          <button style="position: absolute;margin-left: -736px;" (click)="castThrowRock(positionP);resetMovement(); resetTiles()"> Cancel attack or movement.</button>
+      </div>
+      <div *ngIf="warrior">
+        <br>
+        <br>
+          <button style="font-size: 17.5px;" class="btnCast" (click)="resetTiles(); move('warrior',positionW)"><img style="width: 15%" class="icon" src="./assets/Runningicon.png" > Move Warrior<br> <b style="margin-left: 50px;"><small>Only once per turn.</small></b></button>
+          <br>
+          <button style="font-size: 17.5px;" class="btnCast" (click)="castSpearStab(positionW)" ><img style="width: 15%" class="icon" src="./assets/Spearicon.png" > Cast Spear Stab<br> <b style="margin-left: 50px;" ><small>Requires 5 Energy.</small></b></button>
+          <b style="margin-left:30px;margin-top:-32.5px;font-size: 50px; position:absolute;font-family: fantasy">Warrior</b>
+          <img class="imgMoveRight" width="210" src="./assets/warriorportrait.jpg">
+          <button style="position: absolute;margin-left: -736px;" (click)="castSpearStab(positionW);resetMovement(); resetTiles()"> Cancel attack or movement.</button>
+        </div>
+  </div> 

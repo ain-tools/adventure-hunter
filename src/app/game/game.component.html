@@ -1,0 +1,408 @@
+<div *ngIf="!startGame">
+  <img src="./assets/Homepage.jpg" style = "margin-top:-100px;margin-left:-56px;height: 1305px;margin-bottom:-100px;width: 828px;">
+  <div style="background-image: url(./assets/game_background.jpg);width: 400px;height: 400px;position: absolute;margin-top:-800px;margin-left: 165px;text-align: center;border-style: groove;border-color:gray;border-width: 25px;" >
+    <img src="./assets/skull.png" style="width: 40%;height:40%;margin-top: -130px;">
+    <img src="./assets/blue fire.gif" style="position: absolute;margin-top:-150px;width: 50%;height:50%;margin-left:-350px;">
+    <img src="./assets/blue fire.gif" style="position: absolute;margin-top:-150px;width: 50%;height:50%;margin-left:-10px;">
+    <br>
+    <br>
+    <br>
+    <br>
+    <button class="button" (click)="startGameFunc();playBackgroundMusic();" style="margin:auto;width: 90%; height: 100px;font-family:'Franklin Gothic Medium';font-size: 30px;"> Start Adventure </button>
+    <br>
+    <br>
+    <button class="button" (click)="openCredits();playBackgroundMusic();" style="margin:auto;width: 90%; height: 100px;font-family:'Franklin Gothic Medium';font-size: 30px;"> Credits </button>
+  </div>
+</div>
+<div *ngIf="credits">
+  <div style="background-color:black;width: 600px;height: 360px;position: absolute;margin-top:-800px;margin-left: 80px;border:solid;border-radius:5px;text-align: center;">
+    <div class="close-classic" (click)="openCredits();"></div>
+    <br>
+    <p style="color: aliceblue;font-family:'Franklin Gothic Medium';font-size: 20px">Game developed by Dennis Khelvaly.</p>
+    <hr>
+    <p style="color: aliceblue;font-family:'Franklin Gothic Medium';font-size:20px;">Sound effects obtained from https://www.zapsplat.com.</p>
+    <hr>
+    <p style="color: aliceblue;font-family:'Franklin Gothic Medium';font-size: 20px">Character models obtained from Devin Knight tokens.</p>
+    <hr>
+    <p style="color: aliceblue;font-family:'Franklin Gothic Medium';font-size: 20px">Music provided by MusicNoteWorld,from http://en.music-note.jp/.</p>
+    <hr>
+    <p style="color: aliceblue;font-family:'Franklin Gothic Medium';font-size: 20px">Icons made with Logomakr.com.</p>
+  </div>
+</div>
+<div *ngIf="startGame">
+<!-- DUNGEON SELECTION -->
+<div *ngIf="openMenu" style="background-image: url(./assets/game_background.jpg);border-style: groove;border-color:gray;border-width: 25px;" class="frameone">
+  <img src="./assets/backgroundMotifs.png" style="position: absolute; margin-left:76px;margin-top:-117px; width: 67%;height:8%;">
+  <h1 style="font-family:'Franklin Gothic Medium';position:absolute;margin-top: -65px;margin-left: 265px;">Questboard</h1>
+  <div class="frametwo">
+  <br>
+  <div (click)="showLevels('forest')">
+  <div style="position: relative;z-index: 100; margin-left: 295px;margin-bottom: -100px;"><p style="margin-left:-10px;color: white;font-size: 30px;"> Unlocked </p><img style="margin-top:-30px;margin-left:35px;" width="9%" src="./assets/unlocked.png"></div>
+  <img style="width: 50%;display: block ; margin: auto;" src="./assets/forestDungeonMenu.jpg">
+  <p style="color: white;font-size: 30px; text-align: center;margin-top: -150px;"><b>Corrupted Forest</b></p>
+  <p style="color: white;font-size: 20px; text-align: center;margin-top: -10px;"><b>Reward: Druid</b></p>
+  <br>
+  <br>
+  <br>
+</div>
+  <hr>
+  <div (click)="showLevels('village')">
+  <div *ngIf="firstDungeonCompleted" style="position: relative;z-index: 100; margin-left: 295px;margin-bottom: -100px;"><p style="color: white;font-size: 30px;"> Unlocked </p><img style="margin-top:-30px;margin-left:35px;" width="9%" src="./assets/unlocked.png"></div>
+  <div *ngIf="!firstDungeonCompleted" style="position: relative;z-index: 100; margin-left: 295px;margin-bottom: -100px;"><p style="color: white;font-size: 30px;"> Locked </p><img style="margin-top:-30px;margin-left:35px;" width="9%" src="./assets/locked.png"></div>
+  <img style="width: 50%;display: block ; margin: auto;" src="./assets/villageDungeonMenu.jpg">
+  <p style="color: white;font-size: 30px; text-align: center;margin-top: -150px;"><b>Ravaged City </b></p>
+  <p style="color: white;font-size: 20px; text-align: center;margin-top: -10px;"><b>Reward: Peasant</b></p>
+  <br>
+  <br>
+  <br>
+</div>
+  <hr>
+  <div (click)="showLevels('war')">
+      <div *ngIf="secondDungeonCompleted" style="position: relative;z-index: 100; margin-left: 295px;margin-bottom: -100px;"><p style="color: white;font-size: 30px;"> Unlocked </p><img style="margin-top:-30px;margin-left:35px;" width="9%" src="./assets/unlocked.png"></div>
+      <div *ngIf="!secondDungeonCompleted" style="position: relative;z-index: 100; margin-left: 295px;margin-bottom: -100px;"><p style="color: white;font-size: 30px;"> Locked </p><img style="margin-top:-30px;margin-left:35px;" width="9%" src="./assets/locked.png"></div>    
+  <img style="width: 50%;display: block ; margin: auto;" src="./assets/warDungeonMenu.png">
+  <p style="color: white;font-size: 30px; text-align: center;margin-top: -150px;"><b>The Wastelands</b></p>
+  <p style="color: white;font-size: 20px; text-align: center;margin-top: -10px;"><b>Reward: Mage</b></p>
+  <br>
+  <br>
+  <br>
+</div>
+  <hr>
+  <div (click)="showLevels('dragon')">
+      <div *ngIf="thirdDungeonCompleted" style="position: relative;z-index: 100; margin-left: 295px;margin-bottom: -100px;"><p style="color: white;font-size: 30px;"> Unlocked </p><img style="margin-top:-30px;margin-left:35px;" width="9%" src="./assets/unlocked.png"></div>
+      <div *ngIf="!thirdDungeonCompleted" style="position: relative;z-index: 100; margin-left: 295px;margin-bottom: -100px;"><p style="color: white;font-size: 30px;"> Locked </p><img style="margin-top:-30px;margin-left:35px;" width="9%" src="./assets/locked.png"></div>    
+  <img style="width: 50%;display: block ; margin: auto;" src="./assets/dragonDungeonMenu.jpg">
+  <p style="color: white;font-size: 30px; text-align: center;margin-top: -150px;"><b>Dragon Lands</b></p>
+  <p style="color: white;font-size: 20px; text-align: center;margin-top: -10px;"><b>Reward: Mercenary</b></p>
+  <br>
+  <br>
+  <br>
+</div>
+  <hr>
+  <div>
+      <div style="position: relative;z-index: 100; margin-left: 295px;margin-bottom: -100px;"><p style="color: white;font-size: 30px;margin-left: -40px;"> Coming Soon </p><img style="margin-top:-30px;margin-left:35px;" width="9%" src="./assets/locked.png"></div>    
+  <img style="width: 50%;display: block ; margin: auto;" src="./assets/catacombsDungeonMenu.jpg">
+  <p style="color: white;font-size: 30px; text-align: center;margin-top: -150px;"><b>The Catacombs</b></p>
+  <p style="color: white;font-size: 20px; text-align: center;margin-top: -10px;"><b>Reward: Necromancer</b></p>
+  </div>
+  <br>
+  <br>
+  <br>
+  <hr>
+  <div>
+      <div style="position: relative;z-index: 100; margin-left: 295px;margin-bottom: -100px;"><p style="color: white;font-size: 30px;margin-left: -40px;"> Coming Soon </p><img style="margin-top:-30px;margin-left:35px;" width="9%" src="./assets/locked.png"></div>    
+  <img style="width: 50%;display: block ; margin: auto;" src="./assets/churchDungeonMenu.jpg">
+  <p style="color: white;font-size: 30px; text-align: center;margin-top: -150px;"><b>Corrupt Church </b></p>
+  <p style="color: white;font-size: 20px; text-align: center;margin-top: -10px;"><b>Reward: Priestess</b></p>
+  </div>
+  </div>
+</div>
+
+<div *ngIf="hideForNow">
+  <img width="100%" #positionM (click)="resetMovement(positionM); resetTiles(); openOptions('mage',HP)" src="./assets/mage.png" class="mage        target img">
+  <img width="100%" #positionMe (click)="resetMovement(positionMe); resetTiles(); openOptions('mercenary',HP)" src="./assets/Mercenary.png" class="mercenary   target img">
+  <img width="100%" #positionN (click)="resetMovement(positionN); resetTiles(); openOptions('necromancer',HP)" src="./assets/necromancer.png" class="necromancer target img">
+  <img width="100%" #positionP (click)="resetMovement(positionP); resetTiles(); openOptions('peasant',HP)" src="./assets/peasant.png" class="peasant target img">
+  <img width="100%" #positionPr (click)="resetMovement(positionPr); resetTiles(); openOptions('priestess',HP)" src="./assets/priestess.png" class="priestess target img">
+  <img width="100%" #positionD (click)="resetMovement(positionD); resetTiles(); openOptions('druid',HP);" src="./assets/druid.png" class="druid       target img">
+</div>
+
+<!-- Victory alert-->
+<div style="background-color: rgb(66, 179, 244);width: 400px;height: 200px;position: absolute;margin-top:200px;margin-left: 165px;border:solid;border-radius:5px;text-align: center;" *ngIf = "victoryAlert">
+  <p style="font-size: 50px">Victory!</p>
+  <b style="font-size:20px;">New level unlocked.</b>
+</div>
+<!-- Victory dungeon alert-->
+<div style="background-color: rgb(66, 179, 244);width: 400px;height: 200px;position: absolute;margin-top:200px;margin-left: 165px;border:solid;border-radius:5px;text-align: center;" *ngIf = "victoryDungeonAlert">
+  <p style="font-size: 50px">Victory!</p>
+  <b style="font-size:20px;">New dungeon unlocked.</b>
+</div>
+<!-- Defeat alert-->
+<div style="background-color: tomato;width: 400px;height: 200px;position: absolute;margin-top:200px;margin-left: 165px;border:solid;border-radius:5px;text-align: center;" *ngIf = "defeatAlert">
+  <p style="font-size: 30px">You su-... I mean...You lost!!</p>
+  <b style="font-size:20px;">Git gud filthy casual.</b>
+</div>
+<!-- FOREST level selection -->
+<div *ngIf="showForest">
+  <div style="background-image: url(./assets/game_background.jpg) ; border-style: groove;border-color:gray;border-width: 25px;" class="frameone">
+    <div class="frametwo">
+      <img (click)="backArrow();" src="./assets/backarrow.png" style="width: 70px;height:70px;position: absolute;margin-top: -95px;margin-left: -50px;">
+      <img src="./assets/backgroundMotifs.png" style="position: absolute; margin-left:76px;margin-top:-117px; width: 67%;height:8%;">
+
+        <h1 style="font-family:'Franklin Gothic Medium';position:absolute;margin-top: -65px;margin-left: 90px; color:black;">Help the druid cleanse the forest of evil.</h1>
+    <br>
+    <div (click)="showGame('levelOneF')">
+    <div style="position: relative;z-index: 100; margin-left: 295px;margin-bottom: -100px;"><p style="margin-left:-10px;color: white;font-size: 30px;"> Unlocked </p><img style="margin-top:-30px;margin-left:35px;" width="9%" src="./assets/unlocked.png"></div>
+    <img style="width: 50%;display: block ; margin: auto;" src="./assets/forestLevel1Menu.jpg">
+    <p style="color: white;font-size: 30px; text-align: center;margin-top: -150px;"><b>Forest Entrance</b></p>
+    <p style="color: white;font-size: 20px; text-align: center;margin-top: -10px;"><b>Difficulty : Easy</b></p>
+    </div>
+    <br>
+    <br>
+    <br>
+    <hr>
+    <div (click)="showGame('levelTwoF')">
+    <div *ngIf="levelOneCompletedF" style="position: relative;z-index: 100; margin-left: 295px;margin-bottom: -100px;"><p style="color: white;font-size: 30px;"> Unlocked </p><img style="margin-top:-30px;margin-left:35px;" width="9%" src="./assets/unlocked.png"></div>
+    <div *ngIf="!levelOneCompletedF" style="position: relative;z-index: 100; margin-left: 295px;margin-bottom: -100px;"><p style="color: white;font-size: 30px;"> Locked </p><img style="margin-top:-30px;margin-left:35px;" width="9%" src="./assets/locked.png"></div>
+    <img style="width: 50%;display: block ; margin: auto;" src="./assets/forestLevel2Menu.jpg">
+    <p style="color: white;font-size: 30px; text-align: center;margin-top: -150px;"><b>Mountain side</b></p>
+    <p style="color: white;font-size: 20px; text-align: center;margin-top: -10px;"><b>Difficulty : Easy</b></p>
+    </div>
+    <br>
+    <br>
+    <br>
+    <hr>
+    <div (click)="showGame('levelThreeF')">
+        <div *ngIf="levelTwoCompletedF" style="position: relative;z-index: 100; margin-left: 295px;margin-bottom: -100px;"><p style="color: white;font-size: 30px;"> Unlocked </p><img style="margin-top:-30px;margin-left:35px;" width="9%" src="./assets/unlocked.png"></div>
+        <div *ngIf="!levelTwoCompletedF" style="position: relative;z-index: 100; margin-left: 295px;margin-bottom: -100px;"><p style="color: white;font-size: 30px;"> Locked </p><img style="margin-top:-30px;margin-left:35px;" width="9%" src="./assets/locked.png"></div>    
+    <img style="width: 50%;display: block ; margin: auto;" src="./assets/forestLevel3Menu.jpg">
+    <p style="color: white;font-size: 30px; text-align: center;margin-top: -150px;"><b>Mist Road</b></p>
+    <p style="color: white;font-size: 20px; text-align: center;margin-top: -10px;"><b>Difficulty : Medium</b></p>
+    </div>
+    <br>
+    <br>
+    <br>
+    <hr>
+    <div (click)="showGame('levelFourF')">
+        <div *ngIf="levelThreeCompletedF" style="position: relative;z-index: 100; margin-left: 295px;margin-bottom: -100px;"><p style="color: white;font-size: 30px;"> Unlocked </p><img style="margin-top:-30px;margin-left:35px;" width="9%" src="./assets/unlocked.png"></div>
+        <div *ngIf="!levelThreeCompletedF" style="position: relative;z-index: 100; margin-left: 295px;margin-bottom: -100px;"><p style="color: white;font-size: 30px;"> Locked </p><img style="margin-top:-30px;margin-left:35px;" width="9%" src="./assets/locked.png"></div>    
+    <img style="width: 50%;display: block ; margin: auto;" src="./assets/forestLevel4Menu.jpg">
+    <p style="color: white;font-size: 30px; text-align: center;margin-top: -150px;"><b>Bridge Encounter</b></p>
+    <p style="color: white;font-size: 20px; text-align: center;margin-top: -10px;"><b>Difficulty : Medium</b></p>
+    </div>
+    <br>
+    <br>
+    <br>
+    <hr>
+    <div (click)="showGame('levelFiveF')">
+      <div *ngIf="levelFourCompletedF" style="position: relative;z-index: 100; margin-left: 295px;margin-bottom: -100px;"><p style="color: white;font-size: 30px;"> Unlocked </p><img style="margin-top:-30px;margin-left:35px;" width="9%" src="./assets/unlocked.png"></div>
+      <div *ngIf="!levelFourCompletedF" style="position: relative;z-index: 100; margin-left: 295px;margin-bottom: -100px;"><p style="color: white;font-size: 30px;"> Locked </p><img style="margin-top:-30px;margin-left:35px;" width="9%" src="./assets/locked.png"></div>    
+  <img style="width: 50%;display: block ; margin: auto;" src="./assets/forestLevel5Menu.jpg">
+    <p style="color: white;font-size: 30px; text-align: center;margin-top: -150px;"><b>The Final Stand</b></p>
+    <p style="color: white;font-size: 20px; text-align: center;margin-top: -10px;"><b>Difficulty : Medium</b></p>
+    </div>
+    <br>
+    <br>
+    </div>
+  </div>
+</div>
+
+<!-- VILLAGE level selection -->
+<div *ngIf ="showVillage">
+    <div style="background-image: url(./assets/game_background.jpg) ; border-style: groove;border-color:gray;border-width: 25px;" class="frameone">
+      <div class="frametwo">
+          <img (click)="backArrow();" src="./assets/backarrow.png" style="width: 70px;height:70px;position: absolute;margin-top: -95px;margin-left: -50px;">
+          <img src="./assets/backgroundMotifs.png" style="position: absolute; margin-left:76px;margin-top:-117px; width: 67%;height:8%;">
+          <h1 style="font-family:'Franklin Gothic Medium';position:absolute;margin-top: -65px;margin-left: 220px; color: black;">Help your people.</h1>
+      <br>
+      <div (click)="showGame('levelOneV')">
+      <div style="position: relative;z-index: 100; margin-left: 295px;margin-bottom: -100px;"><p style="margin-left:-10px;color: white;font-size: 30px;"> Unlocked </p><img style="margin-top:-30px;margin-left:35px;" width="9%" src="./assets/unlocked.png"></div>
+      <img style="width: 50%;display: block ; margin: auto;" src="./assets/villageLevel1Menu .jpg">
+      <p style="color: white;font-size: 30px; text-align: center;margin-top: -150px;"><b>City Entrance</b></p>
+      <p style="color: white;font-size: 20px; text-align: center;margin-top: -10px;"><b>Difficulty : Medium</b></p>
+      </div>
+      <br>
+      <br>
+      <br>
+      <hr>
+      <div (click)="showGame('levelTwoV')">
+      <div *ngIf="levelOneCompletedV" style="position: relative;z-index: 100; margin-left: 295px;margin-bottom: -100px;"><p style="color: white;font-size: 30px;"> Unlocked </p><img style="margin-top:-30px;margin-left:35px;" width="9%" src="./assets/unlocked.png"></div>
+      <div *ngIf="!levelOneCompletedV" style="position: relative;z-index: 100; margin-left: 295px;margin-bottom: -100px;"><p style="color: white;font-size: 30px;"> Locked </p><img style="margin-top:-30px;margin-left:35px;" width="9%" src="./assets/locked.png"></div>
+      <img style="width: 50%;display: block ; margin: auto;" src="./assets/villageLevel2Menu.jpg">
+      <p style="color: white;font-size: 30px; text-align: center;margin-top: -150px;"><b>The Ghetto</b></p>
+      <p style="color: white;font-size: 20px; text-align: center;margin-top: -10px;"><b>Difficulty : Medium</b></p>
+      </div>
+      <br>
+      <br>
+      <br>
+      <hr>
+      <div (click)="showGame('levelThreeV')">
+          <div *ngIf="levelTwoCompletedV" style="position: relative;z-index: 100; margin-left: 295px;margin-bottom: -100px;"><p style="color: white;font-size: 30px;"> Unlocked </p><img style="margin-top:-30px;margin-left:35px;" width="9%" src="./assets/unlocked.png"></div>
+          <div *ngIf="!levelTwoCompletedV" style="position: relative;z-index: 100; margin-left: 295px;margin-bottom: -100px;"><p style="color: white;font-size: 30px;"> Locked </p><img style="margin-top:-30px;margin-left:35px;" width="9%" src="./assets/locked.png"></div>    
+      <img style="width: 50%;display: block ; margin: auto;" src="./assets/villageLevel3Menu.jpg">
+      <p style="color: white;font-size: 30px; text-align: center;margin-top: -150px;"><b>Dark Alley</b></p>
+      <p style="color: white;font-size: 20px; text-align: center;margin-top: -10px;"><b>Difficulty : Medium</b></p>
+      </div>
+      <br>
+      <br>
+      <br>
+      <hr>
+      <div (click)="showGame('levelFourV')">
+          <div *ngIf="levelThreeCompletedV" style="position: relative;z-index: 100; margin-left: 295px;margin-bottom: -100px;"><p style="color: white;font-size: 30px;"> Unlocked </p><img style="margin-top:-30px;margin-left:35px;" width="9%" src="./assets/unlocked.png"></div>
+          <div *ngIf="!levelThreeCompletedV" style="position: relative;z-index: 100; margin-left: 295px;margin-bottom: -100px;"><p style="color: white;font-size: 30px;"> Locked </p><img style="margin-top:-30px;margin-left:35px;" width="9%" src="./assets/locked.png"></div>    
+      <img style="width: 50%;display: block ; margin: auto;" src="./assets/villageLevel4Menu.jpeg">
+      <p style="color: white;font-size: 30px; text-align: center;margin-top: -150px;"><b>Central Crossroads</b></p>
+      <p style="color: white;font-size: 20px; text-align: center;margin-top: -10px;"><b>Difficulty : Medium</b></p>
+      </div>
+      <br>
+      <br>
+      <br>
+      <hr>
+      <div (click)="showGame('levelFiveV')">
+        <div *ngIf="levelFourCompletedV" style="position: relative;z-index: 100; margin-left: 295px;margin-bottom: -100px;"><p style="color: white;font-size: 30px;"> Unlocked </p><img style="margin-top:-30px;margin-left:35px;" width="9%" src="./assets/unlocked.png"></div>
+        <div *ngIf="!levelFourCompletedV" style="position: relative;z-index: 100; margin-left: 295px;margin-bottom: -100px;"><p style="color: white;font-size: 30px;"> Locked </p><img style="margin-top:-30px;margin-left:35px;" width="9%" src="./assets/locked.png"></div>    
+    <img style="width: 50%;display: block ; margin: auto;" src="./assets/villageLevel5Menu.jpg">
+      <p style="color: white;font-size: 30px; text-align: center;margin-top: -150px;"><b>Castle Invasion</b></p>
+      <p style="color: white;font-size: 20px; text-align: center;margin-top: -10px;"><b>Difficulty : Medium</b></p>
+      </div>
+      <br>
+      <br>
+      </div>
+    </div>
+</div>
+
+<!-- War level selection -->
+<div *ngIf ="showWar">
+  <div style="background-image: url(./assets/game_background.jpg) ; border-style: groove;border-color:gray;border-width: 25px;" class="frameone">
+    <div class="frametwo">
+        <img (click)="backArrow();" src="./assets/backarrow.png" style="width: 70px;height:70px;position: absolute;margin-top: -95px;margin-left: -50px;">
+        <img src="./assets/backgroundMotifs.png" style="position: absolute; margin-left:76px;margin-top:-117px; width: 67%;height:8%;">
+
+        <h1 style="font-family:'Franklin Gothic Medium';position:absolute;margin-top: -65px;margin-left: 60px; color: black;font-size: 25px;">You must cross the Wastelands to get to the Dragon Lands.</h1>
+    <br>
+    <div (click)="showGame('levelOneN')">
+    <div style="position: relative;z-index: 100; margin-left: 295px;margin-bottom: -100px;"><p style="margin-left:-10px;color: white;font-size: 30px;"> Unlocked </p><img style="margin-top:-30px;margin-left:35px;" width="9%" src="./assets/unlocked.png"></div>
+    <img style="width: 50%;display: block ; margin: auto;" src="./assets/warLevel1Menu.jpg">
+    <p style="color: white;font-size: 30px; text-align: center;margin-top: -150px;"><b>River Encounter</b></p>
+    <p style="color: white;font-size: 20px; text-align: center;margin-top: -10px;"><b>Difficulty : Medium</b></p>
+    </div>
+    <br>
+    <br>
+    <br>
+    <hr>
+    <div (click)="showGame('levelTwoN')">
+    <div *ngIf="levelOneCompletedN" style="position: relative;z-index: 100; margin-left: 295px;margin-bottom: -100px;"><p style="color: white;font-size: 30px;"> Unlocked </p><img style="margin-top:-30px;margin-left:35px;" width="9%" src="./assets/unlocked.png"></div>
+    <div *ngIf="!levelOneCompletedN" style="position: relative;z-index: 100; margin-left: 295px;margin-bottom: -100px;"><p style="color: white;font-size: 30px;"> Locked </p><img style="margin-top:-30px;margin-left:35px;" width="9%" src="./assets/locked.png"></div>
+    <img style="width: 50%;display: block ; margin: auto;" src="./assets/warLevel2Menu.jpg">
+    <p style="color: white;font-size: 30px; text-align: center;margin-top: -150px;"><b>Shadowy Figures</b></p>
+    <p style="color: white;font-size: 20px; text-align: center;margin-top: -10px;"><b>Difficulty : Medium</b></p>
+    </div>
+    <br>
+    <br>
+    <br>
+    <hr>
+    <div (click)="showGame('levelThreeN')">
+        <div *ngIf="levelTwoCompletedN" style="position: relative;z-index: 100; margin-left: 295px;margin-bottom: -100px;"><p style="color: white;font-size: 30px;"> Unlocked </p><img style="margin-top:-30px;margin-left:35px;" width="9%" src="./assets/unlocked.png"></div>
+        <div *ngIf="!levelTwoCompletedN" style="position: relative;z-index: 100; margin-left: 295px;margin-bottom: -100px;"><p style="color: white;font-size: 30px;"> Locked </p><img style="margin-top:-30px;margin-left:35px;" width="9%" src="./assets/locked.png"></div>    
+    <img style="width: 50%;display: block ; margin: auto;" src="./assets/warLevel3Menu.jpg">
+    <p style="color: white;font-size: 30px; text-align: center;margin-top: -150px;"><b>The Samurai Brothers</b></p>
+    <p style="color: white;font-size: 20px; text-align: center;margin-top: -10px;"><b>Difficulty : Hard</b></p>
+    </div>
+    <br>
+    <br>
+    <br>
+    <hr>
+    <div (click)="showGame('levelFourN')">
+        <div *ngIf="levelThreeCompletedN" style="position: relative;z-index: 100; margin-left: 295px;margin-bottom: -100px;"><p style="color: white;font-size: 30px;"> Unlocked </p><img style="margin-top:-30px;margin-left:35px;" width="9%" src="./assets/unlocked.png"></div>
+        <div *ngIf="!levelThreeCompletedN" style="position: relative;z-index: 100; margin-left: 295px;margin-bottom: -100px;"><p style="color: white;font-size: 30px;"> Locked </p><img style="margin-top:-30px;margin-left:35px;" width="9%" src="./assets/locked.png"></div>    
+    <img style="width: 50%;display: block ; margin: auto;" src="./assets/warLevel4Menu.jpg">
+    <p style="color: white;font-size: 30px; text-align: center;margin-top: -150px;"><b>Crater From The Past</b></p>
+    <p style="color: white;font-size: 20px; text-align: center;margin-top: -10px;"><b>Difficulty : Hard</b></p>
+    </div>
+    <br>
+    <br>
+    <br>
+    <hr>
+    <div (click)="showGame('levelFiveN')">
+      <div *ngIf="levelFourCompletedN" style="position: relative;z-index: 100; margin-left: 295px;margin-bottom: -100px;"><p style="color: white;font-size: 30px;"> Unlocked </p><img style="margin-top:-30px;margin-left:35px;" width="9%" src="./assets/unlocked.png"></div>
+      <div *ngIf="!levelFourCompletedN" style="position: relative;z-index: 100; margin-left: 295px;margin-bottom: -100px;"><p style="color: white;font-size: 30px;"> Locked </p><img style="margin-top:-30px;margin-left:35px;" width="9%" src="./assets/locked.png"></div>    
+  <img style="width: 50%;display: block ; margin: auto;" src="./assets/warLevel5Menu.jpg">
+    <p style="color: white;font-size: 30px; text-align: center;margin-top: -150px;"><b>The Rehappening</b></p>
+    <p style="color: white;font-size: 20px; text-align: center;margin-top: -10px;"><b>Difficulty : Hard</b></p>
+    </div>
+    <br>
+    <br>
+    </div>
+  </div>
+</div>
+
+<!-- Dragon level selection -->
+<div *ngIf ="showDragon">
+  <div style="background-image: url(./assets/game_background.jpg) ; border-style: groove;border-color:gray;border-width: 25px;" class="frameone">
+    <div class="frametwo">
+        <img (click)="backArrow();" src="./assets/backarrow.png" style="width: 70px;height:70px;position: absolute;margin-top: -95px;margin-left: -50px;">
+        <img src="./assets/backgroundMotifs.png" style="position: absolute; margin-left:76px;margin-top:-117px; width: 67%;height:8%;">
+
+        <h1 style="font-family:'Franklin Gothic Medium';position:absolute;margin-top: -65px;margin-left: 80px; color: black;">Get rid of these dragons once and for all.</h1>
+    <br>
+    <div (click)="showGame('levelOneD')">
+    <div style="position: relative;z-index: 100; margin-left: 295px;margin-bottom: -100px;"><p style="margin-left:-10px;color: white;font-size: 30px;"> Unlocked </p><img style="margin-top:-30px;margin-left:35px;" width="9%" src="./assets/unlocked.png"></div>
+    <img style="width: 50%;display: block ; margin: auto;" src="./assets/dragonLevel1Menu.png">
+    <p style="color: white;font-size: 30px; text-align: center;margin-top: -150px;"><b>Undead Dragon</b></p>
+    <p style="color: white;font-size: 20px; text-align: center;margin-top: -10px;"><b>Difficulty : Very Hard</b></p>
+    </div>
+    <br>
+    <br>
+    <br>
+    <hr>
+    <div (click)="showGame('levelTwoD')">
+    <div *ngIf="levelOneCompletedD" style="position: relative;z-index: 100; margin-left: 295px;margin-bottom: -100px;"><p style="color: white;font-size: 30px;"> Unlocked </p><img style="margin-top:-30px;margin-left:35px;" width="9%" src="./assets/unlocked.png"></div>
+    <div *ngIf="!levelOneCompletedD" style="position: relative;z-index: 100; margin-left: 295px;margin-bottom: -100px;"><p style="color: white;font-size: 30px;"> Locked </p><img style="margin-top:-30px;margin-left:35px;" width="9%" src="./assets/locked.png"></div>
+    <img style="width: 50%;display: block ; margin: auto;" src="./assets/dragonLevel2Menu.jpg">
+    <p style="color: white;font-size: 30px; text-align: center;margin-top: -150px;"><b>Molten Dragon</b></p>
+    <p style="color: white;font-size: 20px; text-align: center;margin-top: -10px;"><b>Difficulty : Very Hard</b></p>
+    </div>
+    <br>
+    <br>
+    <br>
+    <hr>
+    <div (click)="showGame('levelThreeD')">
+        <div *ngIf="levelTwoCompletedD" style="position: relative;z-index: 100; margin-left: 295px;margin-bottom: -100px;"><p style="color: white;font-size: 30px;"> Unlocked </p><img style="margin-top:-30px;margin-left:35px;" width="9%" src="./assets/unlocked.png"></div>
+        <div *ngIf="!levelTwoCompletedD" style="position: relative;z-index: 100; margin-left: 295px;margin-bottom: -100px;"><p style="color: white;font-size: 30px;"> Locked </p><img style="margin-top:-30px;margin-left:35px;" width="9%" src="./assets/locked.png"></div>    
+    <img style="width: 50%;display: block ; margin: auto;" src="./assets/dragonLevel3Menu.jpg">
+    <p style="color: white;font-size: 30px; text-align: center;margin-top: -150px;"><b>Mountain Dragon</b></p>
+    <p style="color: white;font-size: 20px; text-align: center;margin-top: -10px;"><b>Difficulty : Very Hard</b></p>
+    </div>
+    <br>
+    <br>
+    <br>
+    <hr>
+    <div (click)="showGame('levelFourD')">
+        <div *ngIf="levelThreeCompletedD" style="position: relative;z-index: 100; margin-left: 295px;margin-bottom: -100px;"><p style="color: white;font-size: 30px;"> Unlocked </p><img style="margin-top:-30px;margin-left:35px;" width="9%" src="./assets/unlocked.png"></div>
+        <div *ngIf="!levelThreeCompletedD" style="position: relative;z-index: 100; margin-left: 295px;margin-bottom: -100px;"><p style="color: white;font-size: 30px;"> Locked </p><img style="margin-top:-30px;margin-left:35px;" width="9%" src="./assets/locked.png"></div>    
+    <img style="width: 50%;display: block ; margin: auto;" src="./assets/dragonLevel4Menu.jpg">
+    <p style="color: white;font-size: 30px; text-align: center;margin-top: -150px;"><b>Frost Dragon</b></p>
+    <p style="color: white;font-size: 20px; text-align: center;margin-top: -10px;"><b>Difficulty : Very Hard</b></p>
+    </div>
+    <br>
+    <br>
+    <br>
+    <hr>
+    <div (click)="showGame('levelFiveD')">
+      <div *ngIf="levelFourCompletedD" style="position: relative;z-index: 100; margin-left: 295px;margin-bottom: -100px;"><p style="color: white;font-size: 30px;"> Unlocked </p><img style="margin-top:-30px;margin-left:35px;" width="9%" src="./assets/unlocked.png"></div>
+      <div *ngIf="!levelFourCompletedD" style="position: relative;z-index: 100; margin-left: 295px;margin-bottom: -100px;"><p style="color: white;font-size: 30px;"> Locked </p><img style="margin-top:-30px;margin-left:35px;" width="9%" src="./assets/locked.png"></div>    
+  <img style="width: 50%;display: block ; margin: auto;" src="./assets/dragonLevel5Menu.jpg">
+    <p style="color: white;font-size: 30px; text-align: center;margin-top: -150px;"><b>Twillight Dragon</b></p>
+    <p style="color: white;font-size: 20px; text-align: center;margin-top: -10px;"><b>Difficulty : Very Hard</b></p>
+    </div>
+    <br>
+    <br>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- Level Displayer -->
+<div class="displayLevels">
+  <app-level-one (messageEvent)="receiveMessage($event)" *ngIf="lvl1F"></app-level-one>
+  <app-level-two (messageEvent)="receiveMessage1($event)" *ngIf="lvl2F"></app-level-two>
+  <app-level-three (messageEvent)="receiveMessage2($event)" *ngIf="lvl3F"></app-level-three>
+  <app-level-four (messageEvent)="receiveMessage3($event)" *ngIf="lvl4F"></app-level-four>
+  <app-level-five (messageEvent)="receiveMessage4($event)" *ngIf="lvl5F"></app-level-five>
+  <app-level-one-v (messageEvent)="receiveMessageV($event)" *ngIf="lvl1V"></app-level-one-v>
+  <app-level-two-v (messageEvent)="receiveMessage1V($event)" *ngIf="lvl2V"></app-level-two-v>
+  <app-level-three-v (messageEvent)="receiveMessage2V($event)" *ngIf="lvl3V"></app-level-three-v>
+  <app-level-four-v (messageEvent)="receiveMessage3V($event)" *ngIf="lvl4V"></app-level-four-v>
+  <app-level-five-v (messageEvent)="receiveMessage4V($event)" *ngIf="lvl5V"></app-level-five-v>
+  <app-level-one-n (messageEvent)="receiveMessageN($event)" *ngIf="lvl1N"></app-level-one-n>
+  <app-level-two-n (messageEvent)="receiveMessage1N($event)" *ngIf="lvl2N"></app-level-two-n>
+  <app-level-three-n (messageEvent)="receiveMessage2N($event)" *ngIf="lvl3N"></app-level-three-n>
+  <app-level-four-n (messageEvent)="receiveMessage3N($event)" *ngIf="lvl4N"></app-level-four-n>
+  <app-level-five-n (messageEvent)="receiveMessage4N($event)" *ngIf="lvl5N"></app-level-five-n>
+  <app-level-one-d (messageEvent)="receiveMessageD($event)" *ngIf="lvl1D"></app-level-one-d>
+  <app-level-two-d (messageEvent)="receiveMessage1D($event)" *ngIf="lvl2D"></app-level-two-d>
+  <app-level-three-d (messageEvent)="receiveMessage2D($event)" *ngIf="lvl3D"></app-level-three-d>
+  <app-level-four-d (messageEvent)="receiveMessage3D($event)" *ngIf="lvl4D"></app-level-four-d>
+  <app-level-five-d (messageEvent)="receiveMessage4D($event)" *ngIf="lvl5D"></app-level-five-d>
+</div>
+
